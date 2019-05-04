@@ -4,16 +4,16 @@ const ctx = canvas.getContext('2d');
 window.addEventListener('keydown', e => {
     const key = e.key;
 
-    if (key === 'ArrowUp') {
+    if (key === 'ArrowUp' && ySpeed !== 1) {
         xSpeed = 0;
         ySpeed = -1;
-    } else if (key === 'ArrowDown') {
+    } else if (key === 'ArrowDown' && ySpeed !== -1) {
         xSpeed = 0;
         ySpeed = 1;
-    } else if (key === 'ArrowRight') {
+    } else if (key === 'ArrowRight' && xSpeed !== -1) {
         xSpeed = 1;
         ySpeed = 0;
-    } else if (key === 'ArrowLeft') {
+    } else if (key === 'ArrowLeft' && xSpeed !== 1) {
         xSpeed = -1;
         ySpeed = 0;
     }
@@ -52,8 +52,10 @@ function update() {
 
     if (die()) {
         x = canvas.width / 2 - 25;
-        y = canvas.height / 2 -25;
-        trail = [{x: x, y: y}];
+        y = canvas.height / 2 - 25;
+        trail = [];
+        xSpeed = 0;
+        ySpeed = 1;
     }
 
     const block = {
