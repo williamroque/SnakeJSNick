@@ -38,11 +38,23 @@ function die() {
     if (x > canvas.width || y > canvas.height || x < 0 || y < 0) {
         return true;
     }
+    trail.forEach(e => {
+        if (e.x === x && e.y === y) {
+            return true;
+        }
+    });
+    return false;
 }
 
 function update() {
     x += xSpeed * 25;
     y += ySpeed * 25;
+
+    if (die()) {
+        x = canvas.width / 2 - 25;
+        y = canvas.height / 2 -25;
+        trail = [{x: x, y: y}];
+    }
 
     const block = {
         x: x,
