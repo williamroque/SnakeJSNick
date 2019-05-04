@@ -1,0 +1,38 @@
+const textElement = document.querySelector('#todo-input');
+
+const listElement = document.querySelector('#todo-list');
+
+
+let itemList = [];
+
+
+function handleKeyPress(e) {
+
+    if (e.key === 'Enter') {
+
+        addItem();
+
+        textElement.value = '';
+
+    }
+
+}
+
+
+function addItem() {
+
+    listElement.innerHTML += `
+
+        <span>
+
+            <li>
+
+                ${textElement.value}
+
+                <button onclick="this.parentNode.remove()">-</button>
+
+            </li>
+
+        </span>`;
+
+}

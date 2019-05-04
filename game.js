@@ -32,6 +32,9 @@ trail.push({
     x: x,
     y: y
 });
+
+let apple = generateApple();
+
 render();
 
 function die() {
@@ -54,6 +57,12 @@ function update() {
         x = canvas.width / 2 - 25;
         y = canvas.height / 2 -25;
         trail = [{x: x, y: y}];
+        maxLength = 5;
+    }
+
+    if (x === apple.x && y === apple.y) {
+        maxLength++;
+        apple = generateApple();
     }
 
     const block = {
@@ -74,10 +83,18 @@ function render() {
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    trail.forEach(block => {
+    trail.append(apple).forEach(block => {
         ctx.fillStyle = '#F00';
         ctx.fillRect(block.x, block.y, 25, 25);
     });
 }
 
 setInterval(update, 100);
+
+function generateApple() {
+    const x = (Math.random() * (canvas.width / 25)) | 0;
+    const y = (Math.random() * (canvas.height / 25)) | 0;
+
+    return {x: x, y: y};
+}
+    
