@@ -89,7 +89,7 @@ function render() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     trail.concat(apple).forEach(block => {
-        ctx.fillStyle = '#F00';
+        ctx.fillStyle = block.color || '#F00';
         ctx.fillRect(block.x, block.y, 25, 25);
     });
 }
@@ -98,7 +98,7 @@ function generateApple() {
     const x = ((Math.random() * (canvas.width / 25)) | 0) * 25;
     const y = ((Math.random() * (canvas.height / 25)) | 0) * 25;
 
-    return { x: x, y: y};
+    return { x: x, y: y, color: '#FFF'};
 }
 
 setInterval(update, 100);
