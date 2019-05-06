@@ -38,15 +38,16 @@ let apple = generateApple();
 render();
 
 function die() {
+    let willDie = false;
     if (x > canvas.width || y > canvas.height || x < 0 || y < 0) {
-        return true;
+        willDie = true;
     }
     trail.forEach(e => {
         if (e.x === x && e.y === y) {
-            return true;
+            willDie = true;
         }
     });
-    return false;
+    return willDie;
 }
 
 function update() {
